@@ -1,10 +1,7 @@
-dist: trusty
-
-jobs:
-  include:
-    - stage: build docker image
-      script:
-      - docker build -t sslyze .
-    - stage: test
-      script:
-      - docker run --rm --name sslyze -it sslyze
+sudo: required
+services:
+    - docker
+before_install:
+    - docker build -t sslyze .
+script: 
+    -  docker run --rm --name sslyze -it sslyze
